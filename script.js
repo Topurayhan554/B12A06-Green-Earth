@@ -6,6 +6,8 @@ function getElement(id) {
 // get id
 const categoriesContainer = getElement("categories-container");
 const cartContainer = getElement("cart-container");
+const modalContainer = getElement("modal-container");
+const modalDetails = getElement("modal-details");
 
 // categories
 const loadCategories = () => {
@@ -35,7 +37,7 @@ const showCategories = (names) => {
       >
         ${name.category_name}
       </p>`;
-    loadAllCart(name.id);
+    loadCart(name.id);
   });
 
   // click button
@@ -50,7 +52,7 @@ const showCategories = (names) => {
 
       if (e.target.id === "all") {
         cartContainer.innerHTML = "";
-        names.forEach((name) => loadAllCart(name.id));
+        names.forEach((name) => loadCart(name.id));
       } else {
         cartContainer.innerHTML = "";
         loadCart(e.target.id);
@@ -71,17 +73,17 @@ const loadCart = (id) => {
     });
 };
 
-const loadAllCart = (id) => {
-  const url = `https://openapi.programming-hero.com/api/category/${id}`;
-  fetch(url)
-    .then((res) => res.json())
-    .then((data) => {
-      showCart(data.plants);
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-};
+// const allCart = (id) => {
+//   const url = `https://openapi.programming-hero.com/api/category/${id}`;
+//   fetch(url)
+//     .then((res) => res.json())
+//     .then((data) => {
+//       showCart(data.plants);
+//     })
+//     .catch((err) => {
+//       console.log(err);
+//     });
+// };
 
 const showCart = (plants) => {
   plants.forEach((plant) => {
@@ -89,9 +91,9 @@ const showCart = (plants) => {
     <div
             class="cart space-y-3 p-3 bg-white shadow-lg border border-gray-200 rounded-lg"
           >
-            <img src="${plant.image}" class = "h-40 w-full " alt="" />
+            <img src="${plant.image}" class = "h-40 w-full rounded-lg " alt="" />
 
-            <h1 class="text-lg font-bold">${plant.name}</h1>
+            <h1 onclick="loadModal(${plant.id})"  class="text-lg font-bold cursor-pointer">${plant.name}</h1>
             <p class="text-[#1F2937]">
              ${plant.description}
             </p>
@@ -107,6 +109,30 @@ const showCart = (plants) => {
           </div>
     `;
   });
+};
+
+const loadModal = (id) => {
+  const url = `https://openapi.programming-hero.com/api/plant/${id}`;
+  fetch(url)
+    .then((res) => res.json())
+    .then((data) => {
+      console.log(data.plants);
+      showModalDetails(data.plants);
+    });
+};
+
+const showModalDetails = (details) => {
+  modalContainer.innerHTML = `
+  <div class = "space-y-5">
+      <h1 class="text-xl font-bold">${details.name}</h1>
+      <img class="rounded-lg h-80 w-full" src="${details.image}" alt="" />
+      <p><span class="font-bold">Category</span> : ${details.category}</p>
+      <p><span class="font-bold">Price :</span> $${details.price}</p>
+      <p><span class="font-bold">Description:</span> : ${details.description}</p>
+    </div>
+  `;
+
+  modalDetails.showModal();
 };
 
 loadCategories();
