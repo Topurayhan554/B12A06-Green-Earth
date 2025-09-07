@@ -73,6 +73,11 @@
       </div>
     </section>
 
+    <!-- loading spinner -->
+    <div id="spinner" class="flex justify-center items-center mt-5 hidden">
+      <span class="loading loading-dots loading-xl"></span>
+    </div>
+
     <section>
       <h1 class="text-3xl font-bold text-center mt-20">Choose Yours Trees</h1>
     </section>
@@ -80,13 +85,14 @@
     <main class="max-w-[1340px] md:mx-auto mx-4 mt-15">
       <!-- categories -->
       <section class="md:grid md:grid-cols-5 gap-5 items-start">
-        <aside class="col-span-full md:col-span-1 mb-4">
+        <aside
+          class="p-3 col-span-full md:col-span-1 mb-4 border rounded-lg border-gray-200"
+        >
           <h1 class="text-2xl font-bold">Categories</h1>
           <div
             id="categories-container"
-            class="mt-4 bg-white p-3 rounded-lg shadow"
+            class="bg-white rounded-lg mt-5 shadow"
           ></div>
-          `;
         </aside>
 
         <div
@@ -96,21 +102,15 @@
 
         <!-- right -->
         <aside
-          class="col-span-full md:col-span-1 bg-white px-3 py-1 rounded-lg shadow mt-4"
+          class="col-span-full md:col-span-1 bg-white border border-gray-200 px-3 rounded-lg shadow"
         >
           <h1 class="text-2xl font-bold">Your Cart</h1>
-          <div
-            class="mt-4 flex justify-between items-center bg-[#F0FDF4] p-2 shadow-sm"
-          >
-            <div>
-              <p class="font-semibold text-lg mb-2">All Trees</p>
-              <p>$ <span>500 * 1</span></p>
-            </div>
-            <span>x</span>
-          </div>
-          <div class="flex justify-between items-center">
-            <p class="text-lg mt-3">Total :</p>
-            <span>0</span>
+
+          <div id="cart-details-container" class="mt-4"></div>
+
+          <div class="flex justify-between items-center mt-3">
+            <p class="text-lg">Total :</p>
+            <span id="total-balance">0</span>
           </div>
         </aside>
       </section>
