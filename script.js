@@ -116,7 +116,7 @@ const showCart = (plants) => {
             </p>
             <div class="flex items-center justify-between">
               <a class="btn rounded-full" href="#">${plant.category}</a>
-              <p>$<span id = "plant-price">${plant.price}</span></p>
+              <p class = "font-semibold"><i class=" text-gray-800 fa-solid fa-bangladeshi-taka-sign"></i><span id = "plant-price">${plant.price}</span></p>
             </div>
             <button onclick = loadCartDetails(${plant.id})
               class="btn btn-active btn-secondary w-full bg-green-700 rounded-full"
@@ -130,6 +130,7 @@ const showCart = (plants) => {
 };
 
 const loadCartDetails = (id) => {
+  loadingSpinner(true);
   const url = `https://openapi.programming-hero.com/api/plant/${id}`;
   fetch(url)
     .then((res) => res.json())
@@ -147,7 +148,7 @@ const showCartDetails = (plants) => {
             >
               <div>
                 <p class="font-semibold text-lg mb-2">${plants.name}</p>
-                <p>$ <span>${plants.price} * 1</span></p>
+                <p><i class="fa-solid fa-bangladeshi-taka-sign"></i> <span>${plants.price} * 1</span></p>
               </div>
               <button onclick = "deleteButton(${plants.id}, ${plants.price})" class = "btn"><i class="text-green-500 fa-solid fa-x"></i></button>
             </div>`;
@@ -157,6 +158,8 @@ const showCartDetails = (plants) => {
 
   console.log(totalBalance);
   getElement("total-balance").innerText = totalBalance;
+
+  loadingSpinner(false);
 };
 
 // delete button

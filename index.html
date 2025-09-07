@@ -52,7 +52,10 @@
     <!-- banner start -->
     <section class="bg-[#CFF0DC] md:mx-0 mx-4">
       <div class="flex justify-between items-center">
-        <div class="hidden md:block">
+        <div
+          class="hidden md:block bg-no-repeat bg-contain"
+          style="background-image: url(assets/hero-leaf1.png)"
+        >
           <img src="assets/hero-leaf1.png" class="" alt="" />
         </div>
         <div class="text-center py-5 px-2">
@@ -110,7 +113,10 @@
 
           <div class="flex justify-between items-center mt-3">
             <p class="text-lg">Total :</p>
-            <span id="total-balance">0</span>
+            <p class="text-lg">
+              <i class="text-gray-800 fa-solid fa-bangladeshi-taka-sign"></i
+              ><span id="total-balance">0</span>
+            </p>
           </div>
         </aside>
       </section>
