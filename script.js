@@ -106,7 +106,7 @@ const showCart = (plants) => {
   plants.forEach((plant) => {
     cartContainer.innerHTML += `
     <div
-            class="cart space-y-3 p-3 bg-white shadow-lg border border-gray-200 rounded-lg"
+            class="cart flex flex-col justify-between h-full space-y-3 p-3 bg-white shadow-lg border border-gray-200 rounded-lg"
           >
             <img src="${plant.image}" class = "h-60 w-full rounded-lg " alt="" />
 
@@ -118,7 +118,7 @@ const showCart = (plants) => {
               <a class="btn rounded-full" href="#">${plant.category}</a>
               <p class = "font-semibold"><i class=" text-gray-800 fa-solid fa-bangladeshi-taka-sign"></i><span id = "plant-price">${plant.price}</span></p>
             </div>
-            <button onclick = loadCartDetails(${plant.id})
+            <button onclick = "loadCartDetails(${plant.id})"
               class="btn btn-active btn-secondary w-full bg-green-700 rounded-full"
             >
               Add to Cart
